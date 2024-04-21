@@ -1,7 +1,6 @@
 .field {
-	width: 300px;
-	height: 300px;
-	border: 2px solid black;
+	width: 336px;
+	height: 360px;
 	margin-bottom: 10px;
 }
 
@@ -9,17 +8,8 @@
 	width: 100px;
 	height: 100px;
 	border: 2px solid black;
-	padding: 6px;
-}
-
-.cross {
-	background-image: url('../../data/cross.svg');
-	background-size: 98px;
-}
-
-.zero {
-	background-image: url('../../data/zero.svg');
-	background-size: 100px;
+	margin: 2px;
+	font-size: 50px;
 }
 
 .btn {
@@ -30,4 +20,5 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 25px;
 }

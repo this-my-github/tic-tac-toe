@@ -1,13 +1,39 @@
 import styles from './app.module.css';
-import { Field } from './components/field/field';
+import { FieldContainer } from './components/field/field-container';
 import { useState } from 'react';
-import { Information } from './components/information/information';
+import { InformationContainer } from './components/information/information-container';
+import { checkForWin } from './utils/helpers/check-for-win';
 
-export const App = () => {
+export const AppContainer = () => {
+	const startField = ['', '', '', '', '', '', '', '', ''];
 	const [currentPlayer, setCurrentPlayer] = useState('X');
 	const [isGameEnded, setIsGameEnded] = useState(false);
 	const [isDraw, setIsDraw] = useState(false);
-	const [field, setField] = useState(['', '', '', '', '', '', '', '', '']);
+	const [field, setField] = useState(startField);
+
+	const makeStep = (index) => {
+		if (!field[index] && !isGameEnded) {
+			field[index] = currentPlayer;
+			setField(field);
+
+			if (checkForWin(field)) {
+				setIsGameEnded(true);
+			} else {
+				if (!field.includes('')) {
+					setIsDraw(true);
+				} else {
+					currentPlayer === 'X' ? setCurrentPlayer('0') : setCurrentPlayer('X');
+				}
+			}
+		}
+	};
+
+	const resetGame = () => {
+		setCurrentPlayer('X');
+		setIsGameEnded(false);
+		setIsDraw(false);
+		setField(startField);
+	};
 
 	return (
 		<AppLayout
@@ -19,6 +45,8 @@ export const App = () => {
 			setIsGameEnded={setIsGameEnded}
 			setIsDraw={setIsDraw}
 			setField={setField}
+			makeStep={makeStep}
+			resetGame={resetGame}
 		/>
 	);
 };
@@ -32,15 +60,17 @@ export const AppLayout = ({
 	setIsGameEnded,
 	setIsDraw,
 	setField,
+	makeStep,
+	resetGame,
 }) => {
 	return (
 		<div className={styles.container}>
-			<Information
+			<InformationContainer
 				currentPlayer={currentPlayer}
 				isGameEnded={isGameEnded}
 				isDraw={isDraw}
 			/>
-			<Field
+			<FieldContainer
 				currentPlayer={currentPlayer}
 				isGameEnded={isGameEnded}
 				field={field}
@@ -48,6 +78,8 @@ export const AppLayout = ({
 				setIsGameEnded={setIsGameEnded}
 				setIsDraw={setIsDraw}
 				setField={setField}
+				makeStep={makeStep}
+				resetGame={resetGame}
 			/>
 		</div>
 	);
