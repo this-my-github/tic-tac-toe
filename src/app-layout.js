@@ -1,5 +1,4 @@
-import { InformationContainer } from './components/information/information-container';
-import { FieldContainer } from './components/field/field-container';
+import { FieldContainer, InformationContainer } from './components';
 import styles from './app.module.css';
 import PropTypes from 'prop-types';
 import { GAME_STATE, PLAYER } from './constants';
