@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
+import { GAME_STATE, PLAYER } from '../../constants';
 
-export const InformationLayout = ({ currentPlayer, isGameEnded, isDraw }) => {
+export const InformationLayout = ({ currentPlayer, gameState }) => {
 	return (
 		<h1>
-			{isDraw === true
+			{gameState === GAME_STATE.DRAW
 				? 'Ничья'
-				: isGameEnded === true
-					? `Победа: ${currentPlayer}`
-					: `Ходит: ${currentPlayer}`}
+				: gameState === GAME_STATE.WIN
+					? `Победил: ${currentPlayer === PLAYER.CROSS ? 'крестик' : 'нолик'}`
+					: `Ходит: ${currentPlayer === PLAYER.CROSS ? 'крестик' : 'нолик'}`}
 		</h1>
 	);
 };
 
 InformationLayout.propTypes = {
-	currentPlayer: PropTypes.string,
-	isGameEnded: PropTypes.string,
-	isDraw: PropTypes.string,
+	currentPlayer: PropTypes.oneOf([PLAYER.CROSS, PLAYER.ZERO, PLAYER.NOBODY]),
+	gameState: PropTypes.oneOf([GAME_STATE.DRAW, GAME_STATE.STEP, GAME_STATE.WIN]),
 };

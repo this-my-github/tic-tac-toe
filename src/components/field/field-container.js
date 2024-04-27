@@ -1,26 +1,19 @@
 import PropTypes from 'prop-types';
 import { FieldLayout } from './field-layout';
+import { PLAYER } from '../../constants';
 
-export const FieldContainer = ({
-	currentPlayer,
-	isGameEnded,
-	field,
-	setCurrentPlayer,
-	setIsGameEnded,
-	setIsDraw,
-	setField,
-	makeStep,
-	resetGame,
-}) => {
-	return <FieldLayout field={field} makeStep={makeStep} resetGame={resetGame} />;
+export const FieldContainer = ({ field, handleCellClick, handleRestart }) => {
+	return (
+		<FieldLayout
+			field={field}
+			handleCellClick={handleCellClick}
+			handleRestart={handleRestart}
+		/>
+	);
 };
 
 FieldContainer.propTypes = {
-	currentPlayer: PropTypes.string,
-	isGameEnded: PropTypes.string,
-	field: PropTypes.array,
-	setCurrentPlayer: PropTypes.func,
-	setIsGameEnded: PropTypes.func,
-	setIsDraw: PropTypes.func,
-	setField: PropTypes.func,
+	field: PropTypes.arrayOf(PropTypes.oneOf([PLAYER.CROSS, PLAYER.ZERO, PLAYER.NOBODY])),
+	handleCellClick: PropTypes.func,
+	handleRestart: PropTypes.func,
 };
