@@ -1,3 +1,3 @@
-# Crosses and Zeroes
+# Tic-Tac-Toe
 
-Open [crosses and zeroes](http://localhost:3000) to view it in your browser.
+## Open [Tic-Tac-Toe](https://this-my-github.github.io/tic-tac-toe/) to view it in your browser.
